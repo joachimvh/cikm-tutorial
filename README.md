@@ -51,7 +51,7 @@ Remove the current datasources and add a reference to our newly created turtle f
 }
 ```
 
-# Querying our data through the online client
+## Querying our data through the online client
 Online client: http://query.linkeddatafragments.org/
 
 Replace the datasources with our source ( http://localhost:5000/myData ) and execute the following query te see our data:
