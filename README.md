@@ -22,6 +22,13 @@ WHERE {
 
 The result is a list of bindings for the requested variables.
 
+## Using the Web client
+Web client at http://query.linkeddatafragments.org/ .
+
+Can easily execute queries there.
+
+Can change the source to DBpedia SPARQL to execute the Brad Pitt query over again.
+
 ## Setting up a Triple Pattern Fragments server
 Pull from https://github.com/LinkedDataFragments/Server.js and run `npm install` (requires Node.js and npm). Windows users will probably get a bunch of errors from the HDT package but this is not an issue since it's optional.
 
@@ -34,7 +41,7 @@ PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>
 
 ex:brad rdfs:label "Brad Pitt"@en.
 ex:director rdfs:label "The Director"@en.
-ex:movie rdfs:starring ex:brad;
+ex:movie dbpedia-owl:starring ex:brad;
          rdfs:label "Our movie"@en;
          dbpedia-owl:director ex:director.
 ```
@@ -61,3 +68,23 @@ WHERE {
   ?s ?p ?o
 }
 ```
+
+Execute the Brad Pitt query to see it works on this data.
+
+Then add the DBPedia data source to have a federated result.
+
+## Setting up your own online client
+Pull from https://github.com/comunica/jQuery-Widget.js/ and `npm install` again.
+
+Update settings.json with our new data
+```json
+"datasources": [
+  {
+    "name": "My Data",
+    "url": "http://localhost:5000/myData"
+  }, ...
+```
+
+Start the server with `npm run start` and (eventually) see it on http://localhost:8080 .
+
+Now we can execute all the same queries on our own local web client, including the SPARQL endpoint.
