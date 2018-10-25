@@ -88,3 +88,17 @@ Update settings.json with our new data
 Start the server with `npm run start` and (eventually) see it on http://localhost:8080 .
 
 Now we can execute all the same queries on our own local web client, including the SPARQL endpoint.
+
+## Use the Comunica client locally
+Install the Comunica client as a global npm package
+```bash
+npm install -g @comunica/actor-init-sparql
+```
+
+We can now execute SPARQL queries on the command line with the `comunica-sparql` command.
+```bash
+comunica-sparql http://fragments.dbpedia.org/2016-04/en http://localhost:5000/myData "SELECT ?movie ?title ?name WHERE {  ?movie dbpedia-owl:starring [ rdfs:label \"Brad Pitt\"@en ];         rdfs:label ?title;         dbpedia-owl:director [ rdfs:label ?name ].  FILTER LANGMATCHES(LANG(?title), \"EN\")  FILTER LANGMATCHES(LANG(?name),  \"EN\") }"
+```
+
+## GraphQL
+There is also a GraphQL to SPARQL conversion in the web client. A simple tutorial and more info can be found [here](https://gist.github.com/rubensworks/9d6eccce996317677d71944ed1087ea6).
